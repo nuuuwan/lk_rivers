@@ -1,8 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "main_river_41395152",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "HYRIV_ID": 41395152, "NEXT_DOWN": 0, "MAIN_RIV": 41395152, "LENGTH_KM": 26.85, "DIST_DN_KM": 0.0, "DIST_UP_KM": 31.4, "CATCH_SKM": 89.809998, "UPLAND_SKM": 89.599998, "ENDORHEIC": 0, "DIS_AV_CMS": 1.091, "ORD_STRA": 1, "ORD_CLAS": 1, "ORD_FLOW": 6, "HYBAS_L12": 4120049450.0, "Shape_Length": 0.24219757082488286 }, "geometry": { "type": "Polygon", "coordinates": [ ] } }
-]
-}
