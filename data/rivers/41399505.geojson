@@ -1,0 +1,42 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41399505,
+                "NEXT_DOWN": 0,
+                "MAIN_RIV": 41399505,
+                "LENGTH_KM": 1.4400001,
+                "DIST_DN_KM": 0.0,
+                "DIST_UP_KM": 5.1,
+                "CATCH_SKM": 11.68,
+                "UPLAND_SKM": 11.3,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.203,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120049690.0,
+                "Shape_Length": 0.01300550143156291
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        81.33333333333294,
+                        8.495833333333188
+                    ],
+                    [
+                        81.33958333333302,
+                        8.502083333333225
+                    ],
+                    [
+                        81.33958333333302,
+                        8.506249999999874
+                    ]
+                ]
+            }
+        }
+    ]
+}

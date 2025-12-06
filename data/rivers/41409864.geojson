@@ -1,0 +1,820 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41408948,
+                "NEXT_DOWN": 41408972,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 2.46,
+                "DIST_DN_KM": 30.3,
+                "DIST_UP_KM": 4.5,
+                "CATCH_SKM": 10.46,
+                "UPLAND_SKM": 10.5,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.355,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.02220177968653768
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.80416666666625,
+                        6.25625
+                    ],
+                    [
+                        80.81041666666633,
+                        6.25625
+                    ],
+                    [
+                        80.81874999999971,
+                        6.264583333333213
+                    ],
+                    [
+                        80.82291666666637,
+                        6.264583333333213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41408949,
+                "NEXT_DOWN": 41408972,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 2.09,
+                "DIST_DN_KM": 30.3,
+                "DIST_UP_KM": 5.0,
+                "CATCH_SKM": 6.1900001,
+                "UPLAND_SKM": 6.2,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.206,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.018898057941386166
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.82499999999962,
+                        6.254166666666571
+                    ],
+                    [
+                        80.8312499999997,
+                        6.260416666666565
+                    ],
+                    [
+                        80.82708333333292,
+                        6.264583333333213
+                    ],
+                    [
+                        80.82291666666637,
+                        6.264583333333213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41408971,
+                "NEXT_DOWN": 41409094,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 2.27,
+                "DIST_DN_KM": 22.9,
+                "DIST_UP_KM": 5.0,
+                "CATCH_SKM": 7.25,
+                "UPLAND_SKM": 7.3,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.235,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.020475889843214377
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.85833333333298,
+                        6.25625
+                    ],
+                    [
+                        80.87291666666627,
+                        6.25625
+                    ],
+                    [
+                        80.87708333333299,
+                        6.252083333333239
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41408972,
+                "NEXT_DOWN": 41409094,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 7.6100001,
+                "DIST_DN_KM": 22.700001,
+                "DIST_UP_KM": 12.6,
+                "CATCH_SKM": 17.709999,
+                "UPLAND_SKM": 34.400002,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 1.1339999,
+                "ORD_STRA": 2,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.06868867239266513
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.82291666666637,
+                        6.264583333333213
+                    ],
+                    [
+                        80.82708333333292,
+                        6.268749999999876
+                    ],
+                    [
+                        80.8479166666663,
+                        6.268749999999876
+                    ],
+                    [
+                        80.85208333333296,
+                        6.272916666666582
+                    ],
+                    [
+                        80.86041666666628,
+                        6.272916666666582
+                    ],
+                    [
+                        80.87708333333299,
+                        6.25625
+                    ],
+                    [
+                        80.87708333333299,
+                        6.252083333333239
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409093,
+                "NEXT_DOWN": 41409398,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 1.15,
+                "DIST_DN_KM": 19.200001,
+                "DIST_UP_KM": 3.8,
+                "CATCH_SKM": 4.48,
+                "UPLAND_SKM": 4.5,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.141,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.010416666666628771
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.88333333333301,
+                        6.227083333333248
+                    ],
+                    [
+                        80.89374999999964,
+                        6.227083333333248
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409094,
+                "NEXT_DOWN": 41409398,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 3.54,
+                "DIST_DN_KM": 19.4,
+                "DIST_UP_KM": 16.0,
+                "CATCH_SKM": 9.3900003,
+                "UPLAND_SKM": 51.0,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 1.661,
+                "ORD_STRA": 2,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.03190355937287427
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.87708333333299,
+                        6.252083333333239
+                    ],
+                    [
+                        80.88541666666632,
+                        6.24375
+                    ],
+                    [
+                        80.88541666666632,
+                        6.239583333333222
+                    ],
+                    [
+                        80.88958333333292,
+                        6.235416666666559
+                    ],
+                    [
+                        80.88958333333292,
+                        6.23125
+                    ],
+                    [
+                        80.89374999999964,
+                        6.227083333333248
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409234,
+                "NEXT_DOWN": 41409236,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 2.29,
+                "DIST_DN_KM": 21.6,
+                "DIST_UP_KM": 4.7,
+                "CATCH_SKM": 7.4699998,
+                "UPLAND_SKM": 7.5,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.24600001,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.02062394778458888
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.83749999999966,
+                        6.216666666666562
+                    ],
+                    [
+                        80.85208333333296,
+                        6.202083333333213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409235,
+                "NEXT_DOWN": 41409236,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 1.16,
+                "DIST_DN_KM": 21.4,
+                "DIST_UP_KM": 4.7,
+                "CATCH_SKM": 6.4,
+                "UPLAND_SKM": 6.4,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.208,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 3,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.010416666666685614
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.85208333333296,
+                        6.212499999999899
+                    ],
+                    [
+                        80.85208333333296,
+                        6.202083333333213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409236,
+                "NEXT_DOWN": 41409378,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 2.6900001,
+                "DIST_DN_KM": 18.700001,
+                "DIST_UP_KM": 7.5,
+                "CATCH_SKM": 5.9699998,
+                "UPLAND_SKM": 19.8,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.64499998,
+                "ORD_STRA": 2,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.024285113019813995
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.85208333333296,
+                        6.202083333333213
+                    ],
+                    [
+                        80.85624999999962,
+                        6.202083333333213
+                    ],
+                    [
+                        80.86041666666628,
+                        6.20625
+                    ],
+                    [
+                        80.86458333333294,
+                        6.202083333333213
+                    ],
+                    [
+                        80.87291666666627,
+                        6.202083333333213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409237,
+                "NEXT_DOWN": 41409378,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 2.75,
+                "DIST_DN_KM": 18.9,
+                "DIST_UP_KM": 6.0,
+                "CATCH_SKM": 6.62,
+                "UPLAND_SKM": 6.6,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.211,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 3,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.024790614451317937
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.86666666666636,
+                        6.220833333333267
+                    ],
+                    [
+                        80.87708333333299,
+                        6.210416666666568
+                    ],
+                    [
+                        80.87708333333299,
+                        6.20625
+                    ],
+                    [
+                        80.87291666666627,
+                        6.202083333333213
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409377,
+                "NEXT_DOWN": 41409397,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 2.46,
+                "DIST_DN_KM": 14.2,
+                "DIST_UP_KM": 6.7,
+                "CATCH_SKM": 12.38,
+                "UPLAND_SKM": 12.4,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.39,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 3,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.022201779686423992
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.87499999999969,
+                        6.18125
+                    ],
+                    [
+                        80.8812499999996,
+                        6.18125
+                    ],
+                    [
+                        80.88958333333292,
+                        6.172916666666559
+                    ],
+                    [
+                        80.89374999999964,
+                        6.172916666666559
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409378,
+                "NEXT_DOWN": 41409397,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 4.46,
+                "DIST_DN_KM": 14.2,
+                "DIST_UP_KM": 12.0,
+                "CATCH_SKM": 8.3199997,
+                "UPLAND_SKM": 34.8,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 1.114,
+                "ORD_STRA": 2,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.040236892706223576
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.87291666666627,
+                        6.202083333333213
+                    ],
+                    [
+                        80.87708333333299,
+                        6.197916666666551
+                    ],
+                    [
+                        80.8812499999996,
+                        6.197916666666551
+                    ],
+                    [
+                        80.89374999999964,
+                        6.185416666666576
+                    ],
+                    [
+                        80.89374999999964,
+                        6.172916666666559
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409397,
+                "NEXT_DOWN": 41409578,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 3.4200001,
+                "DIST_DN_KM": 10.8,
+                "DIST_UP_KM": 15.4,
+                "CATCH_SKM": 8.3199997,
+                "UPLAND_SKM": 55.5,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 1.758,
+                "ORD_STRA": 2,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.030892556509889944
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.89374999999964,
+                        6.172916666666559
+                    ],
+                    [
+                        80.91458333333296,
+                        6.172916666666559
+                    ],
+                    [
+                        80.91874999999968,
+                        6.16875
+                    ],
+                    [
+                        80.92291666666634,
+                        6.16875
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409398,
+                "NEXT_DOWN": 41409578,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 8.3599997,
+                "DIST_DN_KM": 11.0,
+                "DIST_UP_KM": 24.3,
+                "CATCH_SKM": 22.620001,
+                "UPLAND_SKM": 78.099998,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 2.4890001,
+                "ORD_STRA": 2,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.07529611588277223
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.89374999999964,
+                        6.227083333333248
+                    ],
+                    [
+                        80.89374999999964,
+                        6.21875
+                    ],
+                    [
+                        80.8979166666663,
+                        6.214583333333231
+                    ],
+                    [
+                        80.90208333333297,
+                        6.214583333333231
+                    ],
+                    [
+                        80.90208333333297,
+                        6.210416666666568
+                    ],
+                    [
+                        80.90624999999963,
+                        6.20625
+                    ],
+                    [
+                        80.9104166666663,
+                        6.20625
+                    ],
+                    [
+                        80.91458333333296,
+                        6.202083333333213
+                    ],
+                    [
+                        80.91458333333296,
+                        6.18125
+                    ],
+                    [
+                        80.91874999999968,
+                        6.177083333333222
+                    ],
+                    [
+                        80.91874999999968,
+                        6.172916666666559
+                    ],
+                    [
+                        80.92291666666634,
+                        6.16875
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409577,
+                "NEXT_DOWN": 41409796,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 1.15,
+                "DIST_DN_KM": 5.9,
+                "DIST_UP_KM": 3.8,
+                "CATCH_SKM": 4.48,
+                "UPLAND_SKM": 4.5,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.134,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.010416666666742458
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.92916666666625,
+                        6.131249999999888
+                    ],
+                    [
+                        80.93958333333299,
+                        6.131249999999888
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409578,
+                "NEXT_DOWN": 41409796,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 4.9299998,
+                "DIST_DN_KM": 6.1,
+                "DIST_UP_KM": 29.3,
+                "CATCH_SKM": 21.77,
+                "UPLAND_SKM": 155.39999,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 4.8889999,
+                "ORD_STRA": 3,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.04440355937290554
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.92291666666634,
+                        6.16875
+                    ],
+                    [
+                        80.92291666666634,
+                        6.164583333333248
+                    ],
+                    [
+                        80.93124999999966,
+                        6.15625
+                    ],
+                    [
+                        80.93124999999966,
+                        6.147916666666568
+                    ],
+                    [
+                        80.93541666666633,
+                        6.14375
+                    ],
+                    [
+                        80.93541666666633,
+                        6.135416666666551
+                    ],
+                    [
+                        80.93958333333299,
+                        6.131249999999888
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409796,
+                "NEXT_DOWN": 41409864,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 4.0900002,
+                "DIST_DN_KM": 2.0,
+                "DIST_UP_KM": 33.400002,
+                "CATCH_SKM": 7.04,
+                "UPLAND_SKM": 166.89999,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 5.2290001,
+                "ORD_STRA": 3,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.03678511301978253
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.93958333333299,
+                        6.131249999999888
+                    ],
+                    [
+                        80.93958333333299,
+                        6.110416666666559
+                    ],
+                    [
+                        80.94374999999971,
+                        6.106249999999896
+                    ],
+                    [
+                        80.94374999999971,
+                        6.102083333333248
+                    ],
+                    [
+                        80.94791666666637,
+                        6.097916666666585
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409797,
+                "NEXT_DOWN": 41409864,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 3.2,
+                "DIST_DN_KM": 1.8,
+                "DIST_UP_KM": 6.1,
+                "CATCH_SKM": 11.95,
+                "UPLAND_SKM": 12.0,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 0.343,
+                "ORD_STRA": 1,
+                "ORD_CLAS": 2,
+                "ORD_FLOW": 7,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.028809223176466343
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.95208333333292,
+                        6.125
+                    ],
+                    [
+                        80.95208333333292,
+                        6.106249999999896
+                    ],
+                    [
+                        80.94791666666637,
+                        6.102083333333248
+                    ],
+                    [
+                        80.94791666666637,
+                        6.097916666666585
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "HYRIV_ID": 41409864,
+                "NEXT_DOWN": 0,
+                "MAIN_RIV": 41409864,
+                "LENGTH_KM": 1.58,
+                "DIST_DN_KM": 0.0,
+                "DIST_UP_KM": 35.099998,
+                "CATCH_SKM": 3.6300001,
+                "UPLAND_SKM": 182.5,
+                "ENDORHEIC": 0,
+                "DIS_AV_CMS": 5.677,
+                "ORD_STRA": 3,
+                "ORD_CLAS": 1,
+                "ORD_FLOW": 6,
+                "HYBAS_L12": 4120050100.0,
+                "Shape_Length": 0.014225889843224225
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        80.94791666666637,
+                        6.097916666666585
+                    ],
+                    [
+                        80.94374999999971,
+                        6.093749999999879
+                    ],
+                    [
+                        80.94374999999971,
+                        6.085416666666568
+                    ]
+                ]
+            }
+        }
+    ]
+}
