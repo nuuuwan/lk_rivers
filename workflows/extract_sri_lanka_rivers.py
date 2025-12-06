@@ -11,7 +11,7 @@ import geopandas as gpd
 
 def get_data_path():
     """Get the path to the data directory"""
-    return Path(__file__).parent.parent / "data"
+    return Path(__file__).parent.parent / "data/source"
 
 
 def extract_gdb(zip_path, extract_to):

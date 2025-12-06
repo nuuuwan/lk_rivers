@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 def get_data_path():
     """Get the path to the data directory"""
-    return Path(__file__).parent.parent / "data"
+    return Path(__file__).parent.parent / "data/source"
 
 
 def extract_gdb(zip_path, extract_to):
@@ -76,9 +76,6 @@ def render_rivers(gdf, output_path=None):
 
     # Plot rivers
     gdf.plot(ax=ax, linewidth=0.5, edgecolor="blue", alpha=0.7)
-
-    # Set simple title
-    ax.set_title("Rivers of Sri Lanka", fontsize=18, fontweight="bold")
 
     # Remove axis labels, grid, and outer border
     ax.set_xlabel("")
