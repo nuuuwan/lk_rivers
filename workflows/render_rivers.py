@@ -2,7 +2,9 @@
 Render rivers from HydroRIVERS GeoDB
 """
 
+import json
 import os
+import random
 import zipfile
 from pathlib import Path
 
@@ -66,16 +68,71 @@ def filter_sri_lanka(gdf):
 
 
 def render_rivers(gdf, output_path=None):
-    """Render the rivers on a map"""
+    """
+    Render the rivers on a map using randomly distributed shades of blue for
+    each MAIN_RIV and annotate with river names from riv_id_to_name.json (if
+    available) at the mouth of the river (identified by NEXT_DOWN = 0).
+    """
     print("Rendering rivers...")
     print("GeoDataFrame columns:", gdf.columns.tolist())
     print("Sample data:")
     print(gdf.head())
 
+    # Load river ID to name mapping
+    riv_id_to_name_path = (
+        Path(__file__).parent.parent / "data/static/riv_id_to_name.json"
+    )
+    with open(riv_id_to_name_path, "r", encoding="utf-8") as f:
+        riv_id_to_name = json.load(f)
+
     fig, ax = plt.subplots(figsize=(12, 16))
 
-    # Plot rivers
-    gdf.plot(ax=ax, linewidth=0.5, edgecolor="blue", alpha=0.7)
+    # Assign a random shade of blue to each MAIN_RIV
+    if "MAIN_RIV" in gdf.columns:
+        unique_rivers = gdf["MAIN_RIV"].unique()
+        shades_of_blue = [plt.cm.Blues(i / 256) for i in range(50, 256)]
+        random.shuffle(shades_of_blue)
+        color_map = {
+            river: shades_of_blue[i % len(shades_of_blue)]
+            for i, river in enumerate(unique_rivers)
+        }
+        gdf["color"] = gdf["MAIN_RIV"].map(color_map)
+
+        # Plot rivers with their randomly assigned shades of blue
+        for river, group in gdf.groupby("MAIN_RIV"):
+            group.plot(
+                ax=ax,
+                linewidth=2,
+                color=color_map[river],
+                alpha=1,
+                label=str(river),
+            )
+
+            # Annotate the map with river names (if available) at the mouth
+            river_name = riv_id_to_name.get(str(river), None)
+            if river_name:
+                # Find the row where NEXT_DOWN = 0 (mouth of the river)
+                mouth_row = group[group["NEXT_DOWN"] == 0]
+                if not mouth_row.empty:
+                    mouth_row = mouth_row.iloc[0]
+                    if mouth_row.geometry.type == "LineString":
+                        x, y = mouth_row.geometry.coords[
+                            -1
+                        ]  # Mouth of the river
+                    else:
+                        x, y = mouth_row.geometry.centroid.xy
+                        x, y = x[0], y[0]
+                    ax.text(
+                        x,
+                        y,
+                        river_name,
+                        fontsize=6,
+                        color="black",
+                        weight="bold",
+                    )
+    else:
+        # Default to a single color if MAIN_RIV is not available
+        gdf.plot(ax=ax, linewidth=0.5, edgecolor="blue", alpha=0.7)
 
     # Remove axis labels, grid, and outer border
     ax.set_xlabel("")
@@ -85,33 +142,6 @@ def render_rivers(gdf, output_path=None):
     ax.set_yticks([])
     for spine in ax.spines.values():
         spine.set_visible(False)
-
-    # Annotate major rivers if possible
-    major_name_fields = ["name", "NAME", "RiverName", "RIVER_NAME"]
-    name_field = None
-    for field in major_name_fields:
-        if field in gdf.columns:
-            name_field = field
-            break
-
-    if name_field:
-        # Annotate all rivers with their names
-        for idx, row in gdf.iterrows():
-            if not row.get(name_field):
-                continue
-            geom = row.geometry
-            if geom.type == "LineString":
-                x, y = geom.interpolate(0.5, normalized=True).xy
-            else:
-                x, y = geom.centroid.xy
-            ax.text(
-                x[0],
-                y[0],
-                str(row[name_field]),
-                fontsize=8,
-                color="darkred",
-                weight="bold",
-            )
 
     plt.tight_layout()
 
