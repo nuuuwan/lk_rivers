@@ -126,9 +126,10 @@ def render_rivers(gdf, output_path=None):
                         x,
                         y,
                         river_name,
-                        fontsize=6,
+                        fontsize=12,
                         color="black",
-                        weight="bold",
+                        va="center",
+                        ha="center",
                     )
     else:
         # Default to a single color if MAIN_RIV is not available
@@ -149,7 +150,6 @@ def render_rivers(gdf, output_path=None):
         plt.savefig(output_path, dpi=300, bbox_inches="tight")
         print(f"Saved to {output_path}")
 
-    plt.show()
     print("Done!")
 
 
