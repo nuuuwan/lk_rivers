@@ -3,6 +3,6 @@
 "name": "main_river_41399753",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "HYRIV_ID": 41399753, "NEXT_DOWN": 0, "MAIN_RIV": 41399753, "LENGTH_KM": 4.5900002, "DIST_DN_KM": 0.0, "DIST_UP_KM": 7.2, "CATCH_SKM": 23.360001, "UPLAND_SKM": 22.9, "ENDORHEIC": 0, "DIS_AV_CMS": 0.417, "ORD_STRA": 1, "ORD_CLAS": 1, "ORD_FLOW": 7, "HYBAS_L12": 4120049690.0, "Shape_Length": 0.041457281117941731 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 81.304166666666248, 8.441666666666542 ], [ 81.297916666666282, 8.447916666666536 ], [ 81.297916666666282, 8.460416666666553 ], [ 81.293749999999619, 8.460416666666553 ], [ 81.289583333332956, 8.464583333333216 ], [ 81.285416666666293, 8.464583333333216 ], [ 81.281249999999574, 8.468749999999865 ] ] ] } }
+{ "type": "Feature", "properties": { "HYRIV_ID": 41399753, "NEXT_DOWN": 0, "MAIN_RIV": 41399753, "LENGTH_KM": 4.5900002, "DIST_DN_KM": 0.0, "DIST_UP_KM": 7.2, "CATCH_SKM": 23.360001, "UPLAND_SKM": 22.9, "ENDORHEIC": 0, "DIS_AV_CMS": 0.417, "ORD_STRA": 1, "ORD_CLAS": 1, "ORD_FLOW": 7, "HYBAS_L12": 4120049690.0, "Shape_Length": 0.041457281117941731 }, "geometry": { "type": "Polygon", "coordinates": [ ] } }
 ]
 }

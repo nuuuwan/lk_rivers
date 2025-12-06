@@ -7,6 +7,7 @@ import zipfile
 from pathlib import Path
 
 import geopandas as gpd
+from shapely.geometry import Polygon
 
 
 def get_data_path():
@@ -39,24 +40,35 @@ def load_rivers(gdb_path):
     return gdf
 
 
-def filter_sri_lanka(gdf):
-    """Filter rivers within Sri Lanka's bounding box"""
-    # Sri Lanka approximate bounding box
-    lon_min, lon_max = 79.5, 82.0
-    lat_min, lat_max = 5.9, 10.0
-
-    print("Filtering for Sri Lanka region...")
-
-    # Filter by bounding box
-    mask = (
-        (gdf.bounds["minx"] >= lon_min)
-        & (gdf.bounds["maxx"] <= lon_max)
-        & (gdf.bounds["miny"] >= lat_min)
-        & (gdf.bounds["maxy"] <= lat_max)
+def get_sri_lanka_polygon():
+    """Get the polygon representing Sri Lanka"""
+    return Polygon(
+        [
+            (79.5, 5.9),
+            (82.0, 5.9),
+            (82.0, 10.0),
+            (79.5, 10.0),
+            (79.5, 5.9),
+        ]
     )
 
-    gdf_lk = gdf[mask].copy()
+
+def filter_sri_lanka(gdf):
+    """Filter rivers within Sri Lanka using a spatial polygon"""
+    sri_lanka_polygon = get_sri_lanka_polygon()
+    print("Filtering for Sri Lanka region using spatial polygon...")
+
+    # Ensure GeoDataFrame has a valid CRS
+    if gdf.crs is None or gdf.crs.to_string() != "EPSG:4326":
+        print("Reprojecting to WGS84 (EPSG:4326)...")
+        gdf = gdf.to_crs("EPSG:4326")
+
+    # Spatial filter
+    gdf_lk = gdf[gdf.intersects(sri_lanka_polygon)].copy()
     print(f"Filtered to {len(gdf_lk)} features in Sri Lanka region")
+
+    # Repair invalid geometries
+    gdf_lk["geometry"] = gdf_lk["geometry"].buffer(0)
 
     return gdf_lk
 

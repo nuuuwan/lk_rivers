@@ -3,6 +3,6 @@
 "name": "main_river_41404749",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "HYRIV_ID": 41404749, "NEXT_DOWN": 0, "MAIN_RIV": 41404749, "LENGTH_KM": 2.28, "DIST_DN_KM": 0.0, "DIST_UP_KM": 5.8, "CATCH_SKM": 10.22, "UPLAND_SKM": 10.0, "ENDORHEIC": 0, "DIS_AV_CMS": 0.21600001, "ORD_STRA": 1, "ORD_CLAS": 1, "ORD_FLOW": 7, "HYBAS_L12": 4120049850.0, "Shape_Length": 0.020623947784669267 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 81.845833333332934, 7.199999999999896 ], [ 81.860416666666339, 7.185416666666548 ] ] ] } }
+{ "type": "Feature", "properties": { "HYRIV_ID": 41404749, "NEXT_DOWN": 0, "MAIN_RIV": 41404749, "LENGTH_KM": 2.28, "DIST_DN_KM": 0.0, "DIST_UP_KM": 5.8, "CATCH_SKM": 10.22, "UPLAND_SKM": 10.0, "ENDORHEIC": 0, "DIS_AV_CMS": 0.21600001, "ORD_STRA": 1, "ORD_CLAS": 1, "ORD_FLOW": 7, "HYBAS_L12": 4120049850.0, "Shape_Length": 0.020623947784669267 }, "geometry": { "type": "Polygon", "coordinates": [ ] } }
 ]
 }
