@@ -147,8 +147,6 @@ def render_rivers(gdf, output_path=None):
     for spine in ax.spines.values():
         spine.set_visible(False)
 
-    plt.tight_layout()
-
     if output_path:
         plt.savefig(output_path, dpi=300, bbox_inches="tight")
         print(f"Saved to {output_path}")
