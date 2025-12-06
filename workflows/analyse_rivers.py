@@ -20,7 +20,7 @@ def main():
             key=lambda item: item[1],
             reverse=True,
         )
-    )[10:20]:
+    )[20:30]:
         print(riv_id, file_size)
         url = f"https://github.com/nuuuwan/lk_rivers/blob/main/data/rivers/{riv_id}.geojson"
         os.system(f'open "{url}"')

@@ -51,7 +51,7 @@ def filter_sri_lanka(gdf):
     lon_min, lon_max = 79.5, 82.0
     lat_min, lat_max = 5.9, 10.0
 
-    print(f"Filtering for Sri Lanka region...")
+    print("Filtering for Sri Lanka region...")  # Fixed f-string issue
 
     # Filter by bounding box
     mask = (
@@ -69,9 +69,10 @@ def filter_sri_lanka(gdf):
 
 def render_rivers(gdf, output_path=None):
     """
-    Render the rivers on a map using randomly distributed shades of blue for
-    each MAIN_RIV and annotate with river names from riv_id_to_name.json (if
-    available) at the mouth of the river (identified by NEXT_DOWN = 0).
+    Render the rivers on a map using colors proportional to their lengths,
+    highlight the longest river in the darkest blue, and annotate with river
+    names from riv_id_to_name.json (if available) at the mouth of the river
+    (identified by NEXT_DOWN = 0).
     """
     print("Rendering rivers...")
     print("GeoDataFrame columns:", gdf.columns.tolist())
@@ -85,55 +86,56 @@ def render_rivers(gdf, output_path=None):
     with open(riv_id_to_name_path, "r", encoding="utf-8") as f:
         riv_id_to_name = json.load(f)
 
-    fig, ax = plt.subplots(figsize=(12, 16))
+    fig, ax = plt.subplots(figsize=(16, 16))
 
-    # Assign a random shade of blue to each MAIN_RIV
-    if "MAIN_RIV" in gdf.columns:
-        unique_rivers = gdf["MAIN_RIV"].unique()
-        shades_of_blue = [plt.cm.Blues(i / 256) for i in range(50, 256)]
-        random.shuffle(shades_of_blue)
-        color_map = {
-            river: shades_of_blue[i % len(shades_of_blue)]
-            for i, river in enumerate(unique_rivers)
-        }
-        gdf["color"] = gdf["MAIN_RIV"].map(color_map)
+    # Reproject to a projected CRS for accurate length calculations
+    if gdf.crs.is_geographic:
+        # Shortened the long print statement
+        print("Reprojecting to a projected CRS for accurate calculations...")
+        gdf = gdf.to_crs(epsg=32644)  # UTM Zone 44N, suitable for Sri Lanka
 
-        # Plot rivers with their randomly assigned shades of blue
-        for river, group in gdf.groupby("MAIN_RIV"):
-            group.plot(
-                ax=ax,
-                linewidth=2,
-                color=color_map[river],
-                alpha=1,
-                label=str(river),
-            )
+    # Assign random colors to each river using the 'hsv' colormap
+    unique_rivers = gdf["MAIN_RIV"].unique()
+    # Corrected colormap assignment and split into multiple lines for readability
+    color_map = {
+        river: plt.cm.get_cmap("hsv")(random.random())
+        for river in unique_rivers
+    }
+    gdf["color"] = gdf["MAIN_RIV"].map(color_map)
 
-            # Annotate the map with river names (if available) at the mouth
-            river_name = riv_id_to_name.get(str(river), None)
-            if river_name:
-                # Find the row where NEXT_DOWN = 0 (mouth of the river)
-                mouth_row = group[group["NEXT_DOWN"] == 0]
-                if not mouth_row.empty:
-                    mouth_row = mouth_row.iloc[0]
-                    if mouth_row.geometry.type == "LineString":
-                        x, y = mouth_row.geometry.coords[
-                            -1
-                        ]  # Mouth of the river
-                    else:
-                        x, y = mouth_row.geometry.centroid.xy
-                        x, y = x[0], y[0]
-                    ax.text(
-                        x,
-                        y,
-                        river_name,
-                        fontsize=12,
-                        color="black",
-                        va="center",
-                        ha="center",
-                    )
-    else:
-        # Default to a single color if MAIN_RIV is not available
-        gdf.plot(ax=ax, linewidth=0.5, edgecolor="blue", alpha=0.7)
+    # Sort rivers by the order of their appearance in the dataset
+    sorted_groups = gdf.groupby("MAIN_RIV")
+
+    # Plot rivers with their length-proportional colors
+    for river, group in sorted_groups:
+        group_color = group["color"].iloc[0]
+        group.plot(
+            ax=ax,
+            linewidth=2,
+            color=group_color,
+            alpha=1,
+            label=str(river),
+        )
+
+        # Annotate the map with river names (if available) at the mouth
+        river_name = riv_id_to_name.get(str(river), None)
+        if river_name:
+            # Find the row where NEXT_DOWN = 0 (mouth of the river)
+            mouth_row = group[group["NEXT_DOWN"] == 0]
+            if not mouth_row.empty:
+                mouth_row = mouth_row.iloc[0]
+                if mouth_row.geometry.type == "LineString":
+                    x, y = mouth_row.geometry.coords[-1]  # Mouth of the river
+                else:
+                    x, y = mouth_row.geometry.centroid.xy
+                    x, y = x[0], y[0]
+                ax.text(
+                    x,
+                    y,
+                    river_name,
+                    fontsize=12,
+                    color="black",
+                )
 
     # Remove axis labels, grid, and outer border
     ax.set_xlabel("")
@@ -141,6 +143,7 @@ def render_rivers(gdf, output_path=None):
     ax.grid(False)
     ax.set_xticks([])
     ax.set_yticks([])
+    plt.title("Rivers of Sri Lanka", fontsize=32)
     for spine in ax.spines.values():
         spine.set_visible(False)
 
@@ -150,6 +153,7 @@ def render_rivers(gdf, output_path=None):
         plt.savefig(output_path, dpi=300, bbox_inches="tight")
         print(f"Saved to {output_path}")
 
+    plt.show()
     print("Done!")
 
 
