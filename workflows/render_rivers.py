@@ -3,8 +3,8 @@ Render rivers from HydroRIVERS GeoDB
 """
 
 import json
-import os
 import random
+import sys
 import zipfile
 from pathlib import Path
 
@@ -67,7 +67,7 @@ def filter_sri_lanka(gdf):
     return gdf_lk
 
 
-def render_rivers(gdf, output_path=None):
+def render_rivers(gdf, output_path, selected_river_name):
     """
     Render the rivers on a map using colors proportional to their lengths,
     highlight the longest river in the darkest blue, and annotate with river
@@ -96,9 +96,11 @@ def render_rivers(gdf, output_path=None):
 
     # Assign random colors to each river using the 'hsv' colormap
     unique_rivers = gdf["MAIN_RIV"].unique()
-    # Corrected colormap assignment and split into multiple lines for readability
+    # Corrected colormap assignment and split into multiple lines for
+    # readability
+    cmap = plt.colormaps["hsv"]
     color_map = {
-        river: plt.cm.get_cmap("hsv")(random.random())
+        river: cmap(random.random())
         for river in unique_rivers
     }
     gdf["color"] = gdf["MAIN_RIV"].map(color_map)
@@ -107,18 +109,21 @@ def render_rivers(gdf, output_path=None):
     sorted_groups = gdf.groupby("MAIN_RIV")
 
     # Plot rivers with their length-proportional colors
-    for river, group in sorted_groups:
+    for river_id, group in sorted_groups:
+        river_name = riv_id_to_name.get(str(river_id), None)
+        if selected_river_name and river_name != selected_river_name:
+            continue  # Skip rivers that don't match the selected name
+        
         group_color = group["color"].iloc[0]
         group.plot(
             ax=ax,
             linewidth=2,
             color=group_color,
             alpha=1,
-            label=str(river),
+            label=str(river_id),
         )
 
         # Annotate the map with river names (if available) at the mouth
-        river_name = riv_id_to_name.get(str(river), None)
         if river_name:
             # Find the row where NEXT_DOWN = 0 (mouth of the river)
             mouth_row = group[group["NEXT_DOWN"] == 0]
@@ -155,7 +160,7 @@ def render_rivers(gdf, output_path=None):
     print("Done!")
 
 
-def main():
+def main(selected_river_name):
     """Main execution"""
     data_path = get_data_path()
     zip_path = data_path / "HydroRIVERS_v10_as.gdb.zip"
@@ -178,8 +183,9 @@ def main():
 
     # Render
     output_path = data_path.parent / "lk_rivers_map.png"
-    render_rivers(gdf_lk, output_path)
+    render_rivers(gdf_lk, output_path, selected_river_name)
 
 
 if __name__ == "__main__":
-    main()
+    selected_river_name = sys.argv[1] if len(sys.argv) > 1 else None
+    main(selected_river_name)
