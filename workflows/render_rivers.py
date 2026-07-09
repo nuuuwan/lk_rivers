@@ -11,6 +11,21 @@ from pathlib import Path
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
+DISTRICTS_URL = (
+    "https://raw.githubusercontent.com/nuuuwan/lk_admin_regions/"
+    "refs/heads/main/data/geo/topojson/e4_medium/districts.topojson"
+)
+
+
+def load_districts():
+    """Load Sri Lanka district boundaries from the remote TopoJSON"""
+    print(f"Loading districts from {DISTRICTS_URL}...")
+    districts = gpd.read_file(DISTRICTS_URL)
+    if districts.crs is None:
+        districts = districts.set_crs(epsg=4326)
+    print(f"Loaded {len(districts)} districts")
+    return districts
+
 
 def get_data_path():
     """Get the path to the data directory"""
@@ -94,6 +109,17 @@ def render_rivers(gdf, output_path, selected_river_name):
         print("Reprojecting to a projected CRS for accurate calculations...")
         gdf = gdf.to_crs(epsg=32644)  # UTM Zone 44N, suitable for Sri Lanka
 
+    # Draw district boundaries as the map background
+    districts = load_districts()
+    districts = districts.to_crs(gdf.crs)
+    districts.plot(
+        ax=ax,
+        color="#f0f0f0",
+        edgecolor="#bbbbbb",
+        linewidth=0.5,
+        zorder=0,
+    )
+
     # Assign random colors to each river using the 'hsv' colormap
     unique_rivers = gdf["MAIN_RIV"].unique()
     # Corrected colormap assignment and split into multiple lines for
@@ -148,7 +174,7 @@ def render_rivers(gdf, output_path, selected_river_name):
     ax.grid(False)
     ax.set_xticks([])
     ax.set_yticks([])
-    plt.title("Rivers of Sri Lanka", fontsize=32)
+    plt.title("Rivers of Sri Lanka" if not selected_river_name else f"Rivers of Sri Lanka - {selected_river_name}", fontsize=32)
     for spine in ax.spines.values():
         spine.set_visible(False)
 
@@ -156,7 +182,6 @@ def render_rivers(gdf, output_path, selected_river_name):
         plt.savefig(output_path, dpi=300, bbox_inches="tight")
         print(f"Saved to {output_path}")
 
-    plt.show()
     print("Done!")
 
 
@@ -182,7 +207,7 @@ def main(selected_river_name):
     gdf_lk = filter_sri_lanka(gdf)
 
     # Render
-    output_path = data_path.parent / "lk_rivers_map.png"
+    output_path = data_path.parent / "lk_rivers_map.png" if not selected_river_name else data_path.parent / f"lk_rivers_map_{selected_river_name.replace(' ', '_')}.png"
     render_rivers(gdf_lk, output_path, selected_river_name)
 
 
