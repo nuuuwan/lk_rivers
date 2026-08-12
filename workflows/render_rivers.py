@@ -207,7 +207,9 @@ def main(selected_river_name):
     gdf_lk = filter_sri_lanka(gdf)
 
     # Render
-    output_path = data_path.parent / "lk_rivers_map.png" if not selected_river_name else data_path.parent / f"lk_rivers_map_{selected_river_name.replace(' ', '_')}.png"
+    images_dir = data_path.parent / "images"
+    images_dir.mkdir(parents=True, exist_ok=True)
+    output_path = images_dir / "lk_rivers_map.png" if not selected_river_name else images_dir / f"lk_rivers_map_{selected_river_name.replace(' ', '_')}.png"
     render_rivers(gdf_lk, output_path, selected_river_name)
 
 
