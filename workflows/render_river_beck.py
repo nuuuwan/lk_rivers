@@ -16,6 +16,9 @@ from collections import defaultdict, deque
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
+import numpy as np
+from adjustText import adjust_text
 
 from utils_future import File, JSONFile, Log
 
@@ -278,16 +281,6 @@ def select_branches(branches, max_lines):
     return kept
 
 
-def branch_name(branch, node_to_hyriv):
-    """Name of a branch, if any of its segments has a known name."""
-    for node in branch["nodes"]:
-        hyriv = node_to_hyriv.get(node)
-        name = RIV_ID_TO_NAME.get(str(hyriv)) if hyriv is not None else None
-        if name:
-            return name
-    return None
-
-
 def dist_to_sea(node, parent, node_to_length):
     """Along-river distance in km from a node down to the mouth."""
     total = 0.0
@@ -346,7 +339,7 @@ def render(riv_id, output_path):
     kept_coord = {key: node_coord[key] for key in kept_nodes}
     pos, _edges = layout_octilinear(kept_adjacency, kept_coord, mouth_key)
 
-    fig, ax = plt.subplots(figsize=(16, 16))
+    fig, ax = plt.subplots(figsize=(16, 9))
     ax.set_facecolor("white")
 
     # Size line-end ticks relative to a typical edge length.
@@ -366,6 +359,14 @@ def render(riv_id, output_path):
     min_distance = min(distances)
     span_distance = (max(distances) - min_distance) or 1.0
 
+    # Rank branches by distance to the sea (longest = #1).
+    rank_of = {
+        idx: r + 1
+        for r, idx in enumerate(
+            sorted(range(len(kept)), key=lambda i: distances[i], reverse=True)
+        )
+    }
+
     # Location label (name or lat,lng) for a place; opens Maps if unnamed.
     opened = set()
     added_keys = []
@@ -383,6 +384,10 @@ def render(riv_id, output_path):
             opened.add(key)
             webbrowser.open(f"https://www.google.com/maps?q={lat},{lon}")
         return name
+
+    # Collected label texts and points (lines + stations) to push labels off.
+    texts = []
+    avoid_x, avoid_y = [], []
 
     for index, branch in enumerate(kept):
         color = branch_color((distances[index] - min_distance) / span_distance)
@@ -410,6 +415,14 @@ def render(riv_id, output_path):
             zorder=2,
         )
 
+        # Sample the line so labels can be pushed clear of it later.
+        for (x0, y0), (x1, y1) in zip(points, points[1:]):
+            steps = max(
+                2, int(math.hypot(x1 - x0, y1 - y0) / (tick_half * 0.5))
+            )
+            avoid_x.extend(np.linspace(x0, x1, steps))
+            avoid_y.extend(np.linspace(y0, y1, steps))
+
         # Termination tick at the upstream source of each branch.
         source = branch["nodes"][-1]
         source_neighbour = (
@@ -424,31 +437,35 @@ def render(riv_id, output_path):
         # Termination label: place name / lat,lng plus distance from the sea.
         distance = distances[index]
         sx, sy = pos[source]
-        ax.annotate(
-            f"{place_label(node_coord[source])}\n({distance:.0f} km)",
-            (sx, sy),
-            textcoords="offset points",
-            xytext=(8, 8),
+        avoid_x.append(sx)
+        avoid_y.append(sy)
+        texts.append(ax.text(
+            sx, sy,
+            f"#{rank_of[index]} {place_label(node_coord[source])}"
+            f"\n({distance:.0f} km)",
             fontsize=9,
-            color="black",
-            zorder=6,
-        )
-
-        # Branch name, halfway up the branch, in a small italic font.
-        branch_ident = (
-            branch_name(branch, node_to_hyriv)
-            or str(node_to_hyriv.get(source))
-        )
-        ax.annotate(
-            branch_ident,
-            points[len(points) // 2],
-            fontsize=6,
-            fontstyle="italic",
             color="black",
             ha="center",
             va="center",
             zorder=6,
-        )
+        ))
+
+        # Branch name, on the midpoint of its last (source) segment.
+        source_id = node_to_hyriv.get(source)
+        branch_ident = RIV_ID_TO_NAME.get(str(source_id)) or str(source_id)
+        (nx, ny), (ex, ey) = pos[source_neighbour], pos[source]
+        bx, by = (nx + ex) / 2, (ny + ey) / 2
+        texts.append(ax.text(
+            bx, by,
+            branch_ident,
+            fontsize=7,
+            fontstyle="italic",
+            color="black",
+            ha="center",
+            va="center",
+            zorder=7,
+            path_effects=[pe.withStroke(linewidth=2.5, foreground="white")],
+        ))
 
     # Junction symbols: white circle with a black edge at every confluence.
     for node in kept_nodes:
@@ -462,15 +479,17 @@ def render(riv_id, output_path):
                 linewidth=2.5,
                 zorder=5,
             )
-            ax.annotate(
+            avoid_x.append(jx)
+            avoid_y.append(jy)
+            texts.append(ax.text(
+                jx, jy,
                 place_label(node_coord[node]),
-                (jx, jy),
-                textcoords="offset points",
-                xytext=(8, -12),
                 fontsize=9,
                 color="black",
+                ha="center",
+                va="center",
                 zorder=6,
-            )
+            ))
 
     # Mouth terminus: a tick plus the sea outlet's place name / lat,lng.
     mouth_neighbour = next(iter(kept_adjacency[mouth_key]))
@@ -478,15 +497,17 @@ def render(riv_id, output_path):
         ax, pos[mouth_key], pos[mouth_neighbour], branch_color(1.0), tick_half
     )
     mx, my = pos[mouth_key]
-    ax.annotate(
+    avoid_x.append(mx)
+    avoid_y.append(my)
+    texts.append(ax.text(
+        mx, my,
         place_label(node_coord[mouth_key]),
-        (mx, my),
-        textcoords="offset points",
-        xytext=(8, 8),
         fontsize=9,
         color="black",
+        ha="center",
+        va="center",
         zorder=6,
-    )
+    ))
 
     # Persist any newly-seen spots so they can be named later.
     if added_keys:
@@ -497,8 +518,39 @@ def render(riv_id, output_path):
 
     ax.set_aspect("equal")
     ax.axis("off")
-    ax.margins(0.1)
-    ax.set_title(river_name, fontsize=34, fontweight="bold", color="#222222")
+    ax.margins(0.05)
+
+    # Titles and footer hug the diagram (axes box shrinks with equal aspect).
+    ax.annotate(
+        river_name, (0.5, 1.06), xycoords="axes fraction",
+        ha="center", va="bottom",
+        fontsize=30, fontweight="bold", color="#222222",
+    )
+    ax.annotate(
+        f"{len(kept)} longest branches", (0.5, 1.015), xycoords="axes fraction",
+        ha="center", va="bottom",
+        fontsize=15, fontstyle="italic", color="#555555",
+    )
+    ax.annotate(
+        "Data source: www.hydrosheds.org   |   "
+        "Visualisation & code: www.github.com/nuuuwan/lk_rivers",
+        (0.5, -0.04), xycoords="axes fraction",
+        ha="center", va="top",
+        fontsize=12, color="#555555",
+    )
+
+    # Nudge labels so they avoid each other and the river lines.
+    adjust_text(
+        texts,
+        x=avoid_x,
+        y=avoid_y,
+        ax=ax,
+        expand=(1.3, 1.5),
+        force_text=(0.5, 0.6),
+        force_static=(0.25, 0.3),
+        arrowprops=dict(arrowstyle="-", color="0.55", lw=0.5),
+        min_arrow_len=6,
+    )
 
     fig.savefig(output_path, dpi=200, bbox_inches="tight", facecolor="white")
     plt.close(fig)
